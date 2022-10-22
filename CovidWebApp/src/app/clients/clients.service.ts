@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Client } from './client';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ClientsService {
   }
 
 
-  getCards(appId: number): Observable<Card[]> {
-    return this.http.get<Card[]>(`api/cards/${appId}`);
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>(`api/clients`);
   }
 }

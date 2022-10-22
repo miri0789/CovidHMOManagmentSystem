@@ -14,7 +14,7 @@ namespace DAL.Dto
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public int ClientId { get; set; }
         [Required]
         public int CreatorId  { get; set; }
         [Required]

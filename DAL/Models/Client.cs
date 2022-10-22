@@ -25,13 +25,12 @@ namespace DAL.Dto
         public string Street { get; set; }
         [Required]
         public int BuildingNumber { get; set; }
-        [Required]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         [Required]
         public string MobileNumber { get; set; }
         public DateTime? RecoveryDate { get; set; }
         public DateTime? PositiveResultDate { get; set; }
-        public string ImagePath { get; set; }
+        public string? ImagePath { get; set; }
         public IEnumerable<VaccinationsClient> VaccinationsClients { get; set; }
     }
 }

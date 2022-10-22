@@ -31,7 +31,7 @@ namespace CovidHMOManagmentSystem.Controllers
             }
         }
         //[Microsoft.AspNetCore.Mvc.HttpGet]
-        [HttpGet("{id}")]  
+        [HttpGet("/{id}")]  
         public async Task<ActionResult<Client>> GetClient(int id)
         {
             try

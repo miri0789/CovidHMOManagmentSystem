@@ -28,6 +28,22 @@ namespace DAL.Repository
         }
         public async Task<List<Client>> GetClients()
         {
+            //await _context.VaccinationsCreators.AddAsync(new VaccinationsCreator() { CreatorName = "Moderna" });
+            //await _context.VaccinationsCreators.AddAsync(new VaccinationsCreator() { CreatorName = "Pfyzer" });
+            //await _context.Clients.AddAsync(new Client() {
+            //FirstName = "Bracha",
+            //LastName = "Swartz",
+            // BuildingNumber =10,
+            // City="Modiin",
+            // Identity="212123178",
+            //    PhoneNumber = "035746282",
+            //    MobileNumber = "0583252290",
+            //    Street="Rashba"
+            //});
+            //await _context.VaccinationsClients.AddAsync(new VaccinationsClient() { CreatorId=5,ClientId=3 });
+
+            //await _context.SaveChangesAsync();
+
             var list = await _context.Clients.ToListAsync();
             return list;
         }

@@ -17,7 +17,7 @@ namespace DAL.DataAccess
         public DbSet<VaccinationsClient> VaccinationsClients { get; set; } 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<VaccinationsClient>().HasOne(v => v.Client).WithMany(v => v.VaccinationsClients).HasForeignKey(v=>v.UserId);
+            builder.Entity<VaccinationsClient>().HasOne(v => v.Client).WithMany(v => v.VaccinationsClients).HasForeignKey(v=>v.ClientId);
             builder.Entity<VaccinationsClient>().HasOne(v => v.Creator).WithMany(v => v.VaccinationsClients).HasForeignKey(v=>v.CreatorId);
             builder.Entity<Client>(entity => entity.HasIndex(e => e.Identity).IsUnique());
 

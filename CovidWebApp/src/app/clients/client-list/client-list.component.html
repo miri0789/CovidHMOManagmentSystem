@@ -11,11 +11,11 @@
     </thead>
     <tbody>
         <tr *ngIf="error"><td colspan="4">An error occurred, please try again later...</td></tr>
-        <tr *ngFor="let transaction of transactions">
-            <td>{{ transaction.card?.cardNo }}</td>
-            <td> {{ transaction.card?.issuer }}</td>
-            <td> {{ transaction.amount | currency}}</td>
-            <td> {{ transactionType[transaction.transType] }}</td>
+        <tr *ngFor="let client of clients">
+            <td>{{ client.cardNo }}</td>
+            <td> {{ client.issuer }}</td>
+            <td> {{ client.positiveResultDate | date :'dd/MM/yyyy'}}</td>
+            <td> {{ client.recoveryDate | date :'dd/MM/yyyy'}}</td>
         </tr>
     </tbody>
 </table>
