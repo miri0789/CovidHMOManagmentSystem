@@ -12,14 +12,14 @@ namespace DAL.DataAccess
     public class CovidContext :DbContext
     {
         public CovidContext(DbContextOptions<CovidContext> options) : base(options) { }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public DbSet<VaccinationsCreator> VaccinationsCreators { get; set; }
-        public DbSet<VaccinationsUser> VaccinationsUsers { get; set; } 
+        public DbSet<VaccinationsClient> VaccinationsClients { get; set; } 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<VaccinationsUser>().HasOne(v => v.User).WithMany(v => v.VaccinationsUsers).HasForeignKey(v=>v.UserId);
-            builder.Entity<VaccinationsUser>().HasOne(v => v.Creator).WithMany(v => v.VaccinationsUsers).HasForeignKey(v=>v.CreatorId);
-            builder.Entity<User>(entity => entity.HasIndex(e => e.Identity).IsUnique());
+            builder.Entity<VaccinationsClient>().HasOne(v => v.Client).WithMany(v => v.VaccinationsClients).HasForeignKey(v=>v.UserId);
+            builder.Entity<VaccinationsClient>().HasOne(v => v.Creator).WithMany(v => v.VaccinationsClients).HasForeignKey(v=>v.CreatorId);
+            builder.Entity<Client>(entity => entity.HasIndex(e => e.Identity).IsUnique());
 
 
         }

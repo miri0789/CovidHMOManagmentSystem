@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Dto
 {
-    public class User
+    public class Client
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
+        public int ClientId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -29,9 +29,9 @@ namespace DAL.Dto
         public string PhoneNumber { get; set; }
         [Required]
         public string MobileNumber { get; set; }
-        public DateTime RecoveryDate { get; set; }
-        public DateTime PositiveResultDate { get; set; }
+        public DateTime? RecoveryDate { get; set; }
+        public DateTime? PositiveResultDate { get; set; }
         public string ImagePath { get; set; }
-        public IEnumerable<VaccinationsUser> VaccinationsUsers { get; set; }
+        public IEnumerable<VaccinationsClient> VaccinationsClients { get; set; }
     }
 }

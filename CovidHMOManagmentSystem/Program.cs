@@ -1,8 +1,36 @@
-using CovidHMOManagmentSystem;
-using Microsoft.AspNetCore;
+using DAL.DataAccess;
+using DAL.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-CreateWebHostBuilder(args).Build().Run();
+var builder = WebApplication.CreateBuilder(args);
 
-static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<CovidContext>(options =>
+options.UseSqlServer(builder.Configuration["ConnectionStrings:CovidHMODatabase"]));
+
+builder.Services.AddScoped<IClientsRepository, ClientsRepository>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+

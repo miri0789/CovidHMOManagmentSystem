@@ -16,7 +16,7 @@ namespace DAL.Dto
         public int CreatorID { get; set; }
         [Required]
         public string CreatorName { get; set; }
-        public IEnumerable<VaccinationsUser> VaccinationsUsers { get; set; }
+        public IEnumerable<VaccinationsClient> VaccinationsClients { get; set; }
 
     }
 }

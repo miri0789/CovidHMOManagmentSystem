@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Dto
 {
-    public class VaccinationsUser
+    public class VaccinationsClient
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,7 +21,7 @@ namespace DAL.Dto
         public DateTime VaccinationDate { get; set; }
         [Required]
         public VaccinationCounterEnum VaccinationCounter { get; set; }
-        public User User { get; set; }
+        public Client Client { get; set; }
         public VaccinationsCreator Creator { get; set; }
     }
 }
