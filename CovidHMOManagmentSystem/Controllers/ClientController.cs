@@ -30,8 +30,9 @@ namespace CovidHMOManagmentSystem.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex}");
             }
         }
-        //[Microsoft.AspNetCore.Mvc.HttpGet]
-        [HttpGet("/{id}")]  
+
+
+        [HttpGet("{id}")]  
         public async Task<ActionResult<Client>> GetClient(int id)
         {
             try
@@ -66,6 +67,20 @@ namespace CovidHMOManagmentSystem.Controllers
             try
             {
                 await _clientsRepository.UpdateClient(client);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteClient(int id)
+        {
+            try
+            {
+                await _clientsRepository.DeleteClient(id);
                 return StatusCode(200);
             }
             catch (Exception ex)

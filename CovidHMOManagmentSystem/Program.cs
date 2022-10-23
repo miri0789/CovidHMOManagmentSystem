@@ -17,6 +17,7 @@ builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
+builder.Services.AddCors();
 builder.Services.AddScoped<IClientsRepository, ClientsRepository>();
 
 var app = builder.Build();
@@ -33,6 +34,13 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(options =>
+{
+    options.AllowAnyOrigin();
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
 
 app.Run();
 

@@ -12,7 +12,7 @@ namespace DAL.Dto
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -31,6 +31,6 @@ namespace DAL.Dto
         public DateTime? RecoveryDate { get; set; }
         public DateTime? PositiveResultDate { get; set; }
         public string? ImagePath { get; set; }
-        public IEnumerable<VaccinationsClient> VaccinationsClients { get; set; }
+        public IEnumerable<VaccinationsClient>? VaccinationsClients { get; set; }
     }
 }

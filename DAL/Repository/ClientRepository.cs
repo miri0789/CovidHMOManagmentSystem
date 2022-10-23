@@ -17,6 +17,8 @@ namespace DAL.Repository
         Task<Client> AddClient(Client client);
         Task UpdateClient(Client client);
         Task<Client> GetClient(int Id);
+
+        Task DeleteClient(int id);
     }
 
     public class ClientsRepository : IClientsRepository
@@ -28,29 +30,13 @@ namespace DAL.Repository
         }
         public async Task<List<Client>> GetClients()
         {
-            //await _context.VaccinationsCreators.AddAsync(new VaccinationsCreator() { CreatorName = "Moderna" });
-            //await _context.VaccinationsCreators.AddAsync(new VaccinationsCreator() { CreatorName = "Pfyzer" });
-            //await _context.Clients.AddAsync(new Client() {
-            //FirstName = "Bracha",
-            //LastName = "Swartz",
-            // BuildingNumber =10,
-            // City="Modiin",
-            // Identity="212123178",
-            //    PhoneNumber = "035746282",
-            //    MobileNumber = "0583252290",
-            //    Street="Rashba"
-            //});
-            //await _context.VaccinationsClients.AddAsync(new VaccinationsClient() { CreatorId=5,ClientId=3 });
-
-            //await _context.SaveChangesAsync();
-
             var list = await _context.Clients.ToListAsync();
             return list;
         }
         public async Task<Client> GetClient(int id)
         {
             Client client = await _context.Clients.Where(x => x.ClientId == id)
-                .Include(x=>x.VaccinationsClients).ThenInclude(x=>x.Creator)
+                .Include(x => x.VaccinationsClients).ThenInclude(x => x.Creator)
                 .FirstOrDefaultAsync();
             return client;
         }
@@ -58,14 +44,26 @@ namespace DAL.Repository
         public async Task<Client> AddClient(Client client)
         {
             await _context.Clients.AddAsync(client);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return client;
         }
 
         public async Task UpdateClient(Client client)
         {
-            await _context.Clients.AddAsync(client);
-            _context.SaveChangesAsync();
+            Client clientFromDb = await GetClient(client.ClientId ?? 0);
+            clientFromDb.FirstName = client.FirstName;
+            clientFromDb.PositiveResultDate = client.PositiveResultDate;
+            //TODO
+            _context.Clients.Update(clientFromDb);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteClient(int id)
+        {
+            var client = await _context.Clients.Where(x => x.ClientId == id).FirstAsync();
+            if (client != null)
+                _context.Clients.Remove((Client)client);
+            await _context.SaveChangesAsync();
         }
     }
 

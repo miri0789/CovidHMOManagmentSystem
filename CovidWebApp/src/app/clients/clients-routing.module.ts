@@ -5,7 +5,7 @@ import { ClientListComponent } from './client-list/client-list.component';
 
 const routes: Routes = [
   { path: '', component: ClientListComponent },
-  { path: 'clients/:appId', component: ClientDetailsComponent },
+  { path: 'details/:id', component: ClientDetailsComponent },
   { path: '**', redirectTo: '' },  
 ];
 
